@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   InternalServerErrorException,
   Param,
@@ -50,6 +51,15 @@ export class PostController {
   ) {
     try {
       return await this.postService.update(id, dto);
+    } catch (error) {
+      throw new InternalServerErrorException(error.message);
+    }
+  }
+
+  @Delete(':id')
+  async delete(@Param('id', ParseIntPipe) id: number) {
+    try {
+      return await this.postService.delete(id);
     } catch (error) {
       throw new InternalServerErrorException(error.message);
     }
