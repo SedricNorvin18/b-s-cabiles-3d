@@ -12,6 +12,7 @@ import {
 import { PostService } from './post.service';
 import { dot } from 'node:test/reporters';
 import { error } from 'node:console';
+import { Prisma } from '@prisma/client';
 
 @Controller('post')
 export class PostController {
@@ -47,7 +48,7 @@ export class PostController {
   @Patch(':id')
   async update(
     @Param('id', ParseIntPipe) id: number,
-    @Body() dto: Prisma.PostUpdateInputInput,
+    @Body() dto: Prisma.PostUpdateInput,
   ) {
     try {
       return await this.postService.update(id, dto);
