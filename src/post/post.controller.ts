@@ -10,8 +10,6 @@ import {
   Post,
 } from '@nestjs/common';
 import { PostService } from './post.service';
-import { dot } from 'node:test/reporters';
-import { error } from 'node:console';
 import { Prisma } from '@prisma/client';
 
 @Controller('post')
@@ -26,7 +24,6 @@ export class PostController {
       throw new InternalServerErrorException(error.message);
     }
   }
-
   @Get(':id')
   async get(@Param('id', ParseIntPipe) id: number) {
     try {
